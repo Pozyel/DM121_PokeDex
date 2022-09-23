@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Pokédex</title>
+    <link rel="stylesheet" href="./css/style.css" />
+    <link href="https://fonts.googleapis.com/css?family=Rubik&display=swap" rel="stylesheet" />
+</head>
+
+<body>
+    <button type="button" onclick="sortByName()">Ordem Alfabética</button>
+    <button onClick="history.go(0);">Ordem Numérica</button>
+    <input id="searchbar" onkeyup="search_pokemon()" type="text" name="search" placeholder="Procurar">
+
+    <div class="container">
+        <h1>Pokédex</h1>
+        <ul data-js="pokedex" class="pokedex"></ul>
+    </div>
+    
+    <script src="./javascript/sort.js"></script>
+    <script src="./javascript/app.js"></script>
+</body>
+
+</html>
