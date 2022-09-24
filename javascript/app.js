@@ -15,7 +15,10 @@ const generateHTML = pokemons => {
       <img class="card-image alt="${name}" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png"</img>
         <h2 class="card-title">${name}</h2>
         <h4 class="pokemon-id">#${pokemonId}</h4>
+        <button class="card-button-left">${name}</button>
+        <button class="card-button-top-left">${name}</button>
         <div id="extraInfo" style="display:none" class="card-subtitle">
+        <button onclick=" next(${id})">Next</button>
         <h5>#${showTypes}</h5>
         <h5>#${height}</h5>
         <h5>#${weight}</h5>
@@ -69,10 +72,19 @@ function searchT_pokemon(name) {
           x[i].style.display="none";
       }
       else {
-        console.log(x[i].getElementsByTagName('div'))
         x[i].getElementsByTagName('div')[0].style.display = "block";
-        x[i].style.display="list-item";          
+        x[i].style.display="list-item";
+        x[i].onclick = null;          
       }
+  }
+}
+function next(id) {
+  let x = document.getElementsByTagName('li');
+  console.log(id);
+  if (id !== 150) {
+    x[id-1].style.display="none";
+    x[id].style.display="list-item";
+    x[id].getElementsByTagName('div')[0].style.display = "block";
   }
 }
 
