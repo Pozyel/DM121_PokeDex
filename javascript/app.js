@@ -4,9 +4,10 @@ const generatePokemonPromises = () => Array(150).fill().map((_, index) =>
 )
 
 const generateHTML = pokemons => {
-  return pokemons.reduce((accumulator, { name, id, types, height, moves, stats, weight }) => {
+  return pokemons.reduce((accumulator, { name, id, types, height, abilities, stats, weight }) => {
     const elementTypes = types.map(typeInfo => typeInfo.type.name)
     const showTypes = types.map(typeInfo => typeInfo.type.name).join(' | ')
+    const elementAbilities = abilities.map(abilitieInfo => abilitieInfo.ability.name).join(' | ')
     const pokemonId = ("000" + id).substr(-3)
 
     accumulator += `
@@ -18,6 +19,20 @@ const generateHTML = pokemons => {
         <h5>#${showTypes}</h5>
         <h5>#${height}</h5>
         <h5>#${weight}</h5>
+        <h5>#${elementAbilities}</h5>
+        <label for="hp">HP:${stats[0].base_stat}</label>
+        <progress id="hp" value="${stats[0].base_stat}" max="100"></progress>
+        <label for="atk">ATK:${stats[1].base_stat}</label>
+        <progress id="atk" value="${stats[1].base_stat}" max="100"></progress>
+        <label for="def">DEF:${stats[2].base_stat}</label>
+        <progress id="def" value="${stats[2].base_stat}" max="100"></progress>
+        <label for="satk">SATK:${stats[3].base_stat}</label>
+        <progress id="satk" value="${stats[3].base_stat}" max="100"></progress>
+        <label for="sdef">SDEF:${stats[4].base_stat}</label>
+        <progress id="sdef" value="${stats[4].base_stat}" max="100"></progress>
+        <label for="spd">SPD:${stats[5].base_stat}</label>
+        <progress id="spd" value="${stats[5].base_stat}" max="100"></progress>
+
         </div>
       </li>
     `
@@ -55,7 +70,7 @@ function searchT_pokemon(name) {
       }
       else {
         console.log(x[i].getElementsByTagName('div'))
-        x[i].getElementsByTagName('div').style.display = "block";
+        x[i].getElementsByTagName('div')[0].style.display = "block";
         x[i].style.display="list-item";          
       }
   }
