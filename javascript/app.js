@@ -15,9 +15,9 @@ const generateHTML = pokemons => {
       <img class="card-image alt="${name}" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png"</img>
         <h2 class="card-title">${name}</h2>
         <h4 class="pokemon-id">#${pokemonId}</h4>
-        <button class="card-button-left">${name}</button>
-        <button class="card-button-top-left">${name}</button>
         <div id="extraInfo" style="display:none" class="card-subtitle">
+        <button onClick="history.go(0);">voltar</button>
+        <button onclick=" previous(${id})">Previous</button>
         <button onclick=" next(${id})">Next</button>
         <h5>#${showTypes}</h5>
         <h5>#${height}</h5>
@@ -64,20 +64,20 @@ function search_pokemon() {
 }
 
 function searchT_pokemon(name) {
-  let pokemonName = name.querySelector('.card-title').innerHTML;
-  let x = document.getElementsByTagName('li');
-    
-  for (i = 0; i < x.length; i++) { 
-      if (!x[i].innerHTML.toLowerCase().includes(pokemonName)) {
-          x[i].style.display="none";
-      }
-      else {
-        x[i].getElementsByTagName('div')[0].style.display = "block";
-        x[i].style.display="list-item";
-        x[i].onclick = null;          
-      }
+  let pokemonName = name.querySelector(".card-title").innerHTML;
+  let x = document.getElementsByTagName("li");
+
+  for (i = 0; i < x.length; i++) {
+    if (x[i].querySelector(".card-title").innerHTML != pokemonName) {
+      x[i].style.display = "none";
+    } else {
+      x[i].getElementsByTagName("div")[0].style.display = "block";
+      x[i].style.display = "list-item";
+      x[i].onclick = null;
+    }
   }
 }
+
 function next(id) {
   let x = document.getElementsByTagName('li');
   console.log(id);
@@ -85,6 +85,16 @@ function next(id) {
     x[id-1].style.display="none";
     x[id].style.display="list-item";
     x[id].getElementsByTagName('div')[0].style.display = "block";
+  }
+}
+
+function previous(id) {
+  let x = document.getElementsByTagName('li');
+  console.log(id);
+  if (id !== 1) {
+    x[id-1].style.display="none";
+    x[id-2].style.display="list-item";
+    x[id-2].getElementsByTagName('div')[0].style.display = "block";
   }
 }
 
